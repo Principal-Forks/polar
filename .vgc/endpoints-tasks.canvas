@@ -1,0 +1,310 @@
+{
+  "vv": {
+    "name": "Endpoints to Tasks Relationships",
+    "version": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "checkout_endpoints",
+      "type": "text",
+      "text": "Checkout Endpoints\nPOST /v1/checkouts\nPATCH /v1/checkouts/{id}\nPOST /v1/checkouts/confirm",
+      "x": 850,
+      "y": 85,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "endpoints",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "subscription_endpoints",
+      "type": "text",
+      "text": "Subscription Endpoints\nPOST /v1/subscriptions\nPATCH /v1/subscriptions/{id}\nDELETE /v1/subscriptions/{id}",
+      "x": 50,
+      "y": 85,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "endpoints",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "benefit_endpoints",
+      "type": "text",
+      "text": "Benefit Endpoints\nPOST /v1/benefits\nPATCH /v1/benefits/{id}\nPOST /v1/benefit-grants/{id}/revoke",
+      "x": 1250,
+      "y": 85,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "endpoints",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "organization_endpoints",
+      "type": "text",
+      "text": "Organization Endpoints\nPOST /v1/organizations\nPATCH /v1/organizations/{id}\nDELETE /v1/organizations/{id}",
+      "x": 1650,
+      "y": 85,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "endpoints",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "webhook_endpoints",
+      "type": "text",
+      "text": "Webhook Endpoints\nPOST /v1/integrations/stripe/webhook\nPOST /v1/webhooks\nPOST /v1/webhooks/{id}/ping",
+      "x": 450,
+      "y": 85,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "endpoints",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "checkout_tasks",
+      "type": "text",
+      "text": "Checkout Tasks\ncheckout.handle_free_success\norder.create_subscription_order\norder.trigger_payment",
+      "x": 850,
+      "y": 385,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "subscription_tasks",
+      "type": "text",
+      "text": "Subscription Tasks\nsubscription.cycle\nsubscription.update_meters\nsubscription.cancel_customer",
+      "x": 50,
+      "y": 385,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "benefit_tasks",
+      "type": "text",
+      "text": "Benefit Tasks\nbenefit.grant\nbenefit.revoke\nbenefit.update\nbenefit.cycle",
+      "x": 1250,
+      "y": 385,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "organization_tasks",
+      "type": "text",
+      "text": "Organization Tasks\norganization.created\norganization.account_set\norganization.deletion_requested",
+      "x": 1650,
+      "y": 385,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "payment_tasks",
+      "type": "text",
+      "text": "Payment Tasks\nstripe.webhook.*\npayout.trigger_stripe_payout\norder.balance",
+      "x": 450,
+      "y": 385,
+      "width": 200,
+      "height": 80,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "email_tasks",
+      "type": "text",
+      "text": "Email Tasks\nemail.send\norder.confirmation_email\nnotifications.send",
+      "x": 660,
+      "y": 685,
+      "width": 180,
+      "height": 80,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "task_queue",
+      "type": "text",
+      "text": "Task Queue\n(Dramatiq)\nHIGH/MEDIUM/LOW\nPriority",
+      "x": 1075,
+      "y": 675,
+      "width": 150,
+      "height": 100,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "cylinder"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "checkout_to_tasks",
+      "fromNode": "checkout_endpoints",
+      "toNode": "checkout_tasks",
+      "type": "arrow",
+      "color": "#F97316",
+      "vv": {
+        "edgeType": "endpoint_to_task",
+        "label": "Create/Confirm",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "subscription_to_tasks",
+      "fromNode": "subscription_endpoints",
+      "toNode": "subscription_tasks",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "endpoint_to_task",
+        "label": "Manage",
+        "color": "#F97316",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "benefit_to_tasks",
+      "fromNode": "benefit_endpoints",
+      "toNode": "benefit_tasks",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "endpoint_to_task",
+        "label": "Grant/Revoke",
+        "color": "#F97316",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "organization_to_tasks",
+      "fromNode": "organization_endpoints",
+      "toNode": "organization_tasks",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "endpoint_to_task",
+        "label": "Lifecycle",
+        "color": "#F97316",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "webhook_to_tasks",
+      "fromNode": "webhook_endpoints",
+      "toNode": "payment_tasks",
+      "type": "arrow",
+      "color": "#06B6D4",
+      "vv": {
+        "edgeType": "webhook_to_task",
+        "label": "Process Events",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "checkout_to_email",
+      "fromNode": "checkout_tasks",
+      "toNode": "email_tasks",
+      "type": "arrow",
+      "color": "#8B5CF6",
+      "vv": {
+        "edgeType": "task_chain",
+        "label": "Confirmation",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "subscription_to_email",
+      "fromNode": "subscription_tasks",
+      "toNode": "email_tasks",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "task_chain",
+        "label": "Notifications",
+        "color": "#8B5CF6",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "order_to_email",
+      "fromNode": "payment_tasks",
+      "toNode": "email_tasks",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "task_chain",
+        "label": "Invoices",
+        "color": "#8B5CF6",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "tasks_to_queue",
+      "fromNode": "checkout_tasks",
+      "toNode": "task_queue",
+      "type": "arrow",
+      "color": "#EF4444",
+      "vv": {
+        "edgeType": "high_priority",
+        "label": "HIGH",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "benefit_to_queue",
+      "fromNode": "benefit_tasks",
+      "toNode": "task_queue",
+      "type": "arrow",
+      "color": "#F59E0B",
+      "vv": {
+        "edgeType": "medium_priority",
+        "label": "MEDIUM",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "org_to_queue",
+      "fromNode": "organization_tasks",
+      "toNode": "task_queue",
+      "type": "arrow",
+      "color": "#6B7280",
+      "vv": {
+        "edgeType": "low_priority",
+        "label": "LOW",
+        "style": "dotted"
+      }
+    },
+    {
+      "id": "payment_to_queue",
+      "fromNode": "payment_tasks",
+      "toNode": "task_queue",
+      "type": "arrow",
+      "color": "#EF4444",
+      "vv": {
+        "edgeType": "high_priority",
+        "label": "HIGH",
+        "style": "solid"
+      }
+    }
+  ]
+}

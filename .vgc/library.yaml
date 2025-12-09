@@ -1,0 +1,339 @@
+version: "1.0.0"
+name: "Polar Architecture Components"
+
+nodeComponents:
+  # Frontend Components
+  web_app:
+    name: "Web Dashboard"
+    description: "Next.js main dashboard application"
+    icon: "Monitor"
+    color: "#3B82F6"  # Blue
+    
+  checkout_app:
+    name: "Checkout App"
+    description: "Next.js checkout application"
+    icon: "ShoppingCart"
+    color: "#3B82F6"  # Blue
+    
+  # Backend Core
+  api_server:
+    name: "API Server"
+    description: "FastAPI Python backend server"
+    icon: "Server"
+    color: "#F59E0B"  # Amber
+    
+  worker:
+    name: "Background Worker"
+    description: "Dramatiq background job processor"
+    icon: "Cpu"
+    color: "#F59E0B"  # Amber
+    
+  # Databases & Storage
+  postgresql:
+    name: "PostgreSQL"
+    description: "Primary database"
+    icon: "Database"
+    color: "#EF4444"  # Red
+    
+  redis:
+    name: "Redis"
+    description: "Cache and job queue"
+    icon: "Zap"
+    color: "#10B981"  # Green
+    
+  s3_storage:
+    name: "S3/Minio"
+    description: "File storage"
+    icon: "HardDrive"
+    color: "#06B6D4"  # Cyan
+    
+  # External Services
+  stripe:
+    name: "Stripe"
+    description: "Payment processing"
+    icon: "CreditCard"
+    color: "#8B5CF6"  # Purple
+    
+  github:
+    name: "GitHub"
+    description: "Authentication and repository features"
+    icon: "Github"
+    color: "#EF4444"  # Red
+    
+  # Infrastructure
+  docker:
+    name: "Docker"
+    description: "Container orchestration"
+    icon: "Container"
+    color: "#10B981"  # Green
+    
+  terraform:
+    name: "Terraform"
+    description: "Infrastructure as code"
+    icon: "Package"
+    color: "#8B5CF6"  # Purple
+    
+  # Development Tools
+  load_testing:
+    name: "Load Testing"
+    description: "Locust performance testing"
+    icon: "Activity"
+    color: "#F97316"  # Orange
+    
+  monitoring:
+    name: "Monitoring"
+    description: "Grafana & Prometheus"
+    icon: "BarChart3"
+    color: "#06B6D4"  # Cyan
+
+  # API Server Internal Components
+  fastapi:
+    name: "FastAPI Core"
+    description: "FastAPI application framework"
+    icon: "Layers"
+    color: "#F59E0B"  # Amber
+    
+  endpoints:
+    name: "API Endpoints"
+    description: "Route handlers and HTTP endpoints"
+    icon: "Route"
+    color: "#3B82F6"  # Blue
+    
+  service_layer:
+    name: "Service Layer"
+    description: "Business logic and orchestration"
+    icon: "CircuitBoard"
+    color: "#10B981"  # Green
+    
+  repository_layer:
+    name: "Repository Layer"
+    description: "Database access and ORM"
+    icon: "Database"
+    color: "#EF4444"  # Red
+    
+  auth_module:
+    name: "Authentication"
+    description: "AuthSubject and security"
+    icon: "Shield"
+    color: "#8B5CF6"  # Purple
+    
+  schemas:
+    name: "Schemas"
+    description: "Pydantic models for validation"
+    icon: "FileJson"
+    color: "#06B6D4"  # Cyan
+    
+  middleware:
+    name: "Middleware"
+    description: "Request/response processing"
+    icon: "Filter"
+    color: "#F97316"  # Orange
+    
+  background_tasks:
+    name: "Background Tasks"
+    description: "Dramatiq task definitions"
+    icon: "Clock"
+    color: "#6B7280"  # Gray
+    
+  exception_handler:
+    name: "Exception Handler"
+    description: "Error handling and responses"
+    icon: "AlertTriangle"
+    color: "#EF4444"  # Red
+
+edgeComponents:
+  api_connection:
+    name: "API Call"
+    description: "REST API communication"
+    style: "solid"
+    color: "#3B82F6"  # Blue
+    
+  data_flow:
+    name: "Data Flow"
+    description: "Data transfer between components"
+    style: "solid"
+    color: "#10B981"  # Green
+    
+  async_job:
+    name: "Async Job"
+    description: "Background job processing"
+    style: "dashed"
+    color: "#F59E0B"  # Amber
+    
+  auth_flow:
+    name: "Auth Flow"
+    description: "Authentication and authorization"
+    style: "solid"
+    color: "#8B5CF6"  # Purple
+    
+  payment_flow:
+    name: "Payment Flow"
+    description: "Payment processing flow"
+    style: "solid"
+    color: "#EF4444"  # Red
+    
+  storage_access:
+    name: "Storage Access"
+    description: "File storage operations"
+    style: "dotted"
+    color: "#06B6D4"  # Cyan
+    
+  deployment:
+    name: "Deployment"
+    description: "Infrastructure deployment"
+    style: "dashed"
+    color: "#6B7280"  # Gray
+    
+  monitoring_connection:
+    name: "Monitoring"
+    description: "Metrics and logging"
+    style: "dotted"
+    color: "#F97316"  # Orange
+
+  # API Server Internal Connections
+  request_flow:
+    name: "Request Flow"
+    description: "HTTP request processing"
+    style: "solid"
+    color: "#3B82F6"  # Blue
+    
+  business_logic:
+    name: "Business Logic"
+    description: "Service layer processing"
+    style: "solid"
+    color: "#10B981"  # Green
+    
+  data_access:
+    name: "Data Access"
+    description: "Database operations"
+    style: "solid"
+    color: "#EF4444"  # Red
+    
+  validation:
+    name: "Validation"
+    description: "Schema validation"
+    style: "dashed"
+    color: "#06B6D4"  # Cyan
+    
+  error_handling:
+    name: "Error Handling"
+    description: "Exception processing"
+    style: "dotted"
+    color: "#EF4444"  # Red
+    
+  task_dispatch:
+    name: "Task Dispatch"
+    description: "Background job scheduling"
+    style: "dashed"
+    color: "#6B7280"  # Gray
+
+  # Endpoint-Task Relationship Types
+  endpoint_to_task:
+    name: "Endpoint → Task"
+    description: "Endpoint triggers background task"
+    style: "solid"
+    color: "#F97316"  # Orange
+    
+  webhook_to_task:
+    name: "Webhook → Task"
+    description: "Webhook triggers task processing"
+    style: "solid"
+    color: "#06B6D4"  # Cyan
+    
+  task_chain:
+    name: "Task Chain"
+    description: "Task triggers another task"
+    style: "dashed"
+    color: "#8B5CF6"  # Purple
+    
+  high_priority:
+    name: "High Priority"
+    description: "Critical immediate processing"
+    style: "solid"
+    color: "#EF4444"  # Red
+    
+  medium_priority:
+    name: "Medium Priority"
+    description: "Important business logic"
+    style: "solid"
+    color: "#F59E0B"  # Amber
+    
+  low_priority:
+    name: "Low Priority"
+    description: "Batch operations and cleanup"
+    style: "dotted"
+    color: "#6B7280"  # Gray
+
+  # Endpoint-Task Relationship Components
+  checkout_endpoints:
+    name: "Checkout Endpoints"
+    description: "Checkout session management"
+    icon: "ShoppingCart"
+    color: "#3B82F6"  # Blue
+    
+  subscription_endpoints:
+    name: "Subscription Endpoints"
+    description: "Subscription management"
+    icon: "RefreshCw"
+    color: "#10B981"  # Green
+    
+  payment_endpoints:
+    name: "Payment Endpoints"
+    description: "Payment processing"
+    icon: "CreditCard"
+    color: "#EF4444"  # Red
+    
+  benefit_endpoints:
+    name: "Benefit Endpoints"
+    description: "Benefit management"
+    icon: "Gift"
+    color: "#8B5CF6"  # Purple
+    
+  organization_endpoints:
+    name: "Organization Endpoints"
+    description: "Organization management"
+    icon: "Building"
+    color: "#F59E0B"  # Amber
+    
+  webhook_endpoints:
+    name: "Webhook Endpoints"
+    description: "External webhook handling"
+    icon: "Webhook"
+    color: "#06B6D4"  # Cyan
+    
+  # Task Categories
+  email_tasks:
+    name: "Email Tasks"
+    description: "Email and notification sending"
+    icon: "Mail"
+    color: "#3B82F6"  # Blue
+    
+  benefit_tasks:
+    name: "Benefit Tasks"
+    description: "Benefit grant/revoke operations"
+    icon: "Gift"
+    color: "#8B5CF6"  # Purple
+    
+  order_tasks:
+    name: "Order Tasks"
+    description: "Order processing and management"
+    icon: "Package"
+    color: "#10B981"  # Green
+    
+  payment_tasks:
+    name: "Payment Tasks"
+    description: "Payment and webhook processing"
+    icon: "CreditCard"
+    color: "#EF4444"  # Red
+    
+  subscription_tasks:
+    name: "Subscription Tasks"
+    description: "Subscription lifecycle management"
+    icon: "RefreshCw"
+    color: "#10B981"  # Green
+    
+  organization_tasks:
+    name: "Organization Tasks"
+    description: "Organization lifecycle events"
+    icon: "Building"
+    color: "#F59E0B"  # Amber

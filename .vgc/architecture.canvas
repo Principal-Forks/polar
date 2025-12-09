@@ -1,0 +1,371 @@
+{
+  "vv": {
+    "name": "Polar Architecture",
+    "version": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "web_app",
+      "type": "text",
+      "text": "Web Dashboard",
+      "x": 880,
+      "y": 95,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "web_app",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "checkout_app",
+      "type": "text",
+      "text": "Checkout App",
+      "x": 1280,
+      "y": 95,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "checkout_app",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "api_server",
+      "type": "text",
+      "text": "API Server",
+      "x": 1280,
+      "y": 395,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "api_server",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "worker",
+      "type": "text",
+      "text": "Background Worker",
+      "x": 480,
+      "y": 395,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "worker",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "postgresql",
+      "type": "text",
+      "text": "PostgreSQL",
+      "x": 90,
+      "y": 695,
+      "width": 120,
+      "height": 60,
+      "vv": {
+        "nodeType": "postgresql",
+        "shape": "cylinder"
+      }
+    },
+    {
+      "id": "redis",
+      "type": "text",
+      "text": "Redis",
+      "x": 500,
+      "y": 695,
+      "width": 100,
+      "height": 60,
+      "vv": {
+        "nodeType": "redis",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "s3_storage",
+      "type": "text",
+      "text": "S3/Minio",
+      "x": 890,
+      "y": 695,
+      "width": 120,
+      "height": 60,
+      "vv": {
+        "nodeType": "s3_storage",
+        "shape": "cylinder"
+      }
+    },
+    {
+      "id": "stripe",
+      "type": "text",
+      "text": "Stripe",
+      "x": 1700,
+      "y": 695,
+      "width": 100,
+      "height": 60,
+      "vv": {
+        "nodeType": "stripe",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "github",
+      "type": "text",
+      "text": "GitHub",
+      "x": 1300,
+      "y": 695,
+      "width": 100,
+      "height": 60,
+      "vv": {
+        "nodeType": "github",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "docker",
+      "type": "text",
+      "text": "Docker",
+      "x": 900,
+      "y": 395,
+      "width": 100,
+      "height": 60,
+      "vv": {
+        "nodeType": "docker",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "terraform",
+      "type": "text",
+      "text": "Terraform",
+      "x": 90,
+      "y": 95,
+      "width": 120,
+      "height": 60,
+      "vv": {
+        "nodeType": "terraform",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "load_testing",
+      "type": "text",
+      "text": "Load Testing",
+      "x": 1690,
+      "y": 95,
+      "width": 120,
+      "height": 60,
+      "vv": {
+        "nodeType": "load_testing",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "monitoring",
+      "type": "text",
+      "text": "Monitoring",
+      "x": 490,
+      "y": 95,
+      "width": 120,
+      "height": 60,
+      "vv": {
+        "nodeType": "monitoring",
+        "shape": "rectangle"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "web_to_api",
+      "fromNode": "web_app",
+      "toNode": "api_server",
+      "type": "arrow",
+      "color": "#3B82F6",
+      "vv": {
+        "edgeType": "api_connection",
+        "label": "REST API",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "checkout_to_api",
+      "fromNode": "checkout_app",
+      "toNode": "api_server",
+      "type": "arrow",
+      "color": "#3B82F6",
+      "vv": {
+        "edgeType": "api_connection",
+        "label": "REST API",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "api_to_db",
+      "fromNode": "api_server",
+      "toNode": "postgresql",
+      "type": "arrow",
+      "color": "#10B981",
+      "vv": {
+        "edgeType": "data_flow",
+        "label": "Read/Write",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "api_to_redis",
+      "fromNode": "api_server",
+      "toNode": "redis",
+      "type": "arrow",
+      "color": "#10B981",
+      "vv": {
+        "edgeType": "data_flow",
+        "label": "Cache",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "api_to_s3",
+      "fromNode": "api_server",
+      "toNode": "s3_storage",
+      "type": "arrow",
+      "color": "#06B6D4",
+      "vv": {
+        "edgeType": "storage_access",
+        "label": "Files",
+        "style": "dotted"
+      }
+    },
+    {
+      "id": "worker_to_db",
+      "fromNode": "worker",
+      "toNode": "postgresql",
+      "type": "arrow",
+      "color": "#10B981",
+      "vv": {
+        "edgeType": "data_flow",
+        "label": "Read/Write",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "worker_to_redis",
+      "fromNode": "worker",
+      "toNode": "redis",
+      "type": "arrow",
+      "color": "#F59E0B",
+      "vv": {
+        "edgeType": "async_job",
+        "label": "Queue",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "api_to_stripe",
+      "fromNode": "api_server",
+      "toNode": "stripe",
+      "type": "arrow",
+      "color": "#EF4444",
+      "vv": {
+        "edgeType": "payment_flow",
+        "label": "Payments",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "api_to_github",
+      "fromNode": "api_server",
+      "toNode": "github",
+      "type": "arrow",
+      "color": "#8B5CF6",
+      "vv": {
+        "edgeType": "auth_flow",
+        "label": "OAuth",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "docker_to_services",
+      "fromNode": "docker",
+      "toNode": "postgresql",
+      "type": "arrow",
+      "color": "#6B7280",
+      "vv": {
+        "edgeType": "deployment",
+        "label": "Container",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "docker_to_redis",
+      "fromNode": "docker",
+      "toNode": "redis",
+      "type": "arrow",
+      "color": "#6B7280",
+      "vv": {
+        "edgeType": "deployment",
+        "label": "Container",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "docker_to_s3",
+      "fromNode": "docker",
+      "toNode": "s3_storage",
+      "type": "arrow",
+      "color": "#6B7280",
+      "vv": {
+        "edgeType": "deployment",
+        "label": "Container",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "terraform_to_infra",
+      "fromNode": "terraform",
+      "toNode": "docker",
+      "type": "arrow",
+      "color": "#6B7280",
+      "vv": {
+        "edgeType": "deployment",
+        "label": "IaC",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "load_test_to_api",
+      "fromNode": "load_testing",
+      "toNode": "api_server",
+      "type": "arrow",
+      "color": "#3B82F6",
+      "vv": {
+        "edgeType": "api_connection",
+        "label": "Load Test",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "monitoring_to_api",
+      "fromNode": "monitoring",
+      "toNode": "api_server",
+      "type": "arrow",
+      "color": "#F97316",
+      "vv": {
+        "edgeType": "monitoring_connection",
+        "label": "Metrics",
+        "style": "dotted"
+      }
+    },
+    {
+      "id": "monitoring_to_worker",
+      "fromNode": "monitoring",
+      "toNode": "worker",
+      "type": "arrow",
+      "color": "#F97316",
+      "vv": {
+        "edgeType": "monitoring_connection",
+        "label": "Metrics",
+        "style": "dotted"
+      }
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "vv": {
+    "name": "API Server Architecture",
+    "version": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "fastapi_core",
+      "type": "text",
+      "text": "FastAPI Core",
+      "x": 880,
+      "y": 95,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "fastapi",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "middleware",
+      "type": "text",
+      "text": "Middleware",
+      "x": 1690,
+      "y": 395,
+      "width": 120,
+      "height": 60,
+      "vv": {
+        "nodeType": "middleware",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "auth_module",
+      "type": "text",
+      "text": "Authentication",
+      "x": 880,
+      "y": 395,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "auth_module",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "exception_handler",
+      "type": "text",
+      "text": "Exception Handler",
+      "x": 1280,
+      "y": 395,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "exception_handler",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "endpoints",
+      "type": "text",
+      "text": "API Endpoints",
+      "x": 1080,
+      "y": 695,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "endpoints",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "schemas",
+      "type": "text",
+      "text": "Schemas",
+      "x": 490,
+      "y": 395,
+      "width": 120,
+      "height": 60,
+      "vv": {
+        "nodeType": "schemas",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "service_layer",
+      "type": "text",
+      "text": "Service Layer",
+      "x": 80,
+      "y": 395,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "service_layer",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "background_tasks",
+      "type": "text",
+      "text": "Background Tasks",
+      "x": 880,
+      "y": 995,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "background_tasks",
+        "shape": "rectangle"
+      }
+    },
+    {
+      "id": "repository_layer",
+      "type": "text",
+      "text": "Repository Layer",
+      "x": 680,
+      "y": 695,
+      "width": 140,
+      "height": 60,
+      "vv": {
+        "nodeType": "repository_layer",
+        "shape": "rectangle"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "core_to_middleware",
+      "fromNode": "fastapi_core",
+      "toNode": "middleware",
+      "type": "arrow",
+      "color": "#3B82F6",
+      "vv": {
+        "edgeType": "request_flow",
+        "label": "Request",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "core_to_auth",
+      "fromNode": "fastapi_core",
+      "toNode": "auth_module",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "request_flow",
+        "label": "Auth",
+        "color": "#3B82F6",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "core_to_exception",
+      "fromNode": "fastapi_core",
+      "toNode": "exception_handler",
+      "type": "arrow",
+      "color": "#EF4444",
+      "vv": {
+        "edgeType": "error_handling",
+        "label": "Errors",
+        "style": "dotted"
+      }
+    },
+    {
+      "id": "middleware_to_endpoints",
+      "fromNode": "middleware",
+      "toNode": "endpoints",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "request_flow",
+        "label": "Process",
+        "color": "#3B82F6",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "auth_to_endpoints",
+      "fromNode": "auth_module",
+      "toNode": "endpoints",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "request_flow",
+        "label": "Authorized",
+        "color": "#3B82F6",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "endpoints_to_schemas",
+      "fromNode": "endpoints",
+      "toNode": "schemas",
+      "type": "arrow",
+      "color": "#06B6D4",
+      "vv": {
+        "edgeType": "validation",
+        "label": "Validate",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "endpoints_to_service",
+      "fromNode": "endpoints",
+      "toNode": "service_layer",
+      "type": "arrow",
+      "color": "#10B981",
+      "vv": {
+        "edgeType": "business_logic",
+        "label": "Process",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "endpoints_to_tasks",
+      "fromNode": "endpoints",
+      "toNode": "background_tasks",
+      "type": "arrow",
+      "color": "#6B7280",
+      "vv": {
+        "edgeType": "task_dispatch",
+        "label": "Schedule",
+        "style": "dashed"
+      }
+    },
+    {
+      "id": "service_to_repository",
+      "fromNode": "service_layer",
+      "toNode": "repository_layer",
+      "type": "arrow",
+      "color": "#EF4444",
+      "vv": {
+        "edgeType": "data_access",
+        "label": "Query",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "repository_to_service",
+      "fromNode": "repository_layer",
+      "toNode": "service_layer",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "data_access",
+        "label": "Return",
+        "color": "#EF4444",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "service_to_endpoints",
+      "fromNode": "service_layer",
+      "toNode": "endpoints",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "business_logic",
+        "label": "Result",
+        "color": "#10B981",
+        "style": "solid"
+      }
+    },
+    {
+      "id": "schemas_to_endpoints",
+      "fromNode": "schemas",
+      "toNode": "endpoints",
+      "type": "arrow",
+      "vv": {
+        "edgeType": "validation",
+        "label": "Validated",
+        "color": "#06B6D4",
+        "style": "dashed"
+      }
+    }
+  ]
+}
