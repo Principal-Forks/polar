@@ -1,122 +1,113 @@
 {
-  "vv": {
+  "pv": {
     "name": "API Server Architecture",
     "version": "1.0.0"
   },
   "nodes": [
     {
       "id": "fastapi_core",
-      "type": "text",
-      "text": "FastAPI Core",
+      "type": "fastapi",
       "x": 880,
       "y": 95,
       "width": 140,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "fastapi",
         "shape": "rectangle"
       }
     },
     {
       "id": "middleware",
-      "type": "text",
-      "text": "Middleware",
+      "type": "middleware",
       "x": 1690,
       "y": 395,
       "width": 120,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "middleware",
         "shape": "rectangle"
       }
     },
     {
       "id": "auth_module",
-      "type": "text",
-      "text": "Authentication",
+      "type": "auth_module",
       "x": 880,
       "y": 395,
       "width": 140,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "auth_module",
         "shape": "rectangle"
       }
     },
     {
       "id": "exception_handler",
-      "type": "text",
-      "text": "Exception Handler",
+      "type": "exception_handler",
       "x": 1280,
       "y": 395,
       "width": 140,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "exception_handler",
         "shape": "rectangle"
       }
     },
     {
       "id": "endpoints",
-      "type": "text",
-      "text": "API Endpoints",
+      "type": "endpoints",
       "x": 1080,
       "y": 695,
       "width": 140,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "endpoints",
         "shape": "rectangle"
       }
     },
     {
       "id": "schemas",
-      "type": "text",
-      "text": "Schemas",
+      "type": "schemas",
       "x": 490,
       "y": 395,
       "width": 120,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "schemas",
         "shape": "rectangle"
       }
     },
     {
       "id": "service_layer",
-      "type": "text",
-      "text": "Service Layer",
+      "type": "service_layer",
       "x": 80,
       "y": 395,
       "width": 140,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "service_layer",
         "shape": "rectangle"
       }
     },
     {
       "id": "background_tasks",
-      "type": "text",
-      "text": "Background Tasks",
+      "type": "background_tasks",
       "x": 880,
       "y": 995,
       "width": 140,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "background_tasks",
         "shape": "rectangle"
       }
     },
     {
       "id": "repository_layer",
-      "type": "text",
-      "text": "Repository Layer",
+      "type": "repository_layer",
       "x": 680,
       "y": 695,
       "width": 140,
       "height": 60,
-      "vv": {
+      "pv": {
         "nodeType": "repository_layer",
         "shape": "rectangle"
       }
@@ -127,11 +118,10 @@
       "id": "core_to_middleware",
       "fromNode": "fastapi_core",
       "toNode": "middleware",
-      "type": "arrow",
       "color": "#3B82F6",
-      "vv": {
+      "label": "Request",
+      "pv": {
         "edgeType": "request_flow",
-        "label": "Request",
         "style": "solid"
       }
     },
@@ -139,11 +129,10 @@
       "id": "core_to_auth",
       "fromNode": "fastapi_core",
       "toNode": "auth_module",
-      "type": "arrow",
-      "vv": {
+      "color": "#3B82F6",
+      "label": "Auth",
+      "pv": {
         "edgeType": "request_flow",
-        "label": "Auth",
-        "color": "#3B82F6",
         "style": "solid"
       }
     },
@@ -151,11 +140,10 @@
       "id": "core_to_exception",
       "fromNode": "fastapi_core",
       "toNode": "exception_handler",
-      "type": "arrow",
       "color": "#EF4444",
-      "vv": {
+      "label": "Errors",
+      "pv": {
         "edgeType": "error_handling",
-        "label": "Errors",
         "style": "dotted"
       }
     },
@@ -163,11 +151,10 @@
       "id": "middleware_to_endpoints",
       "fromNode": "middleware",
       "toNode": "endpoints",
-      "type": "arrow",
-      "vv": {
+      "color": "#3B82F6",
+      "label": "Process",
+      "pv": {
         "edgeType": "request_flow",
-        "label": "Process",
-        "color": "#3B82F6",
         "style": "solid"
       }
     },
@@ -175,11 +162,10 @@
       "id": "auth_to_endpoints",
       "fromNode": "auth_module",
       "toNode": "endpoints",
-      "type": "arrow",
-      "vv": {
+      "color": "#3B82F6",
+      "label": "Authorized",
+      "pv": {
         "edgeType": "request_flow",
-        "label": "Authorized",
-        "color": "#3B82F6",
         "style": "solid"
       }
     },
@@ -187,11 +173,10 @@
       "id": "endpoints_to_schemas",
       "fromNode": "endpoints",
       "toNode": "schemas",
-      "type": "arrow",
       "color": "#06B6D4",
-      "vv": {
+      "label": "Validate",
+      "pv": {
         "edgeType": "validation",
-        "label": "Validate",
         "style": "dashed"
       }
     },
@@ -199,11 +184,10 @@
       "id": "endpoints_to_service",
       "fromNode": "endpoints",
       "toNode": "service_layer",
-      "type": "arrow",
       "color": "#10B981",
-      "vv": {
+      "label": "Process",
+      "pv": {
         "edgeType": "business_logic",
-        "label": "Process",
         "style": "solid"
       }
     },
@@ -211,11 +195,10 @@
       "id": "endpoints_to_tasks",
       "fromNode": "endpoints",
       "toNode": "background_tasks",
-      "type": "arrow",
       "color": "#6B7280",
-      "vv": {
+      "label": "Schedule",
+      "pv": {
         "edgeType": "task_dispatch",
-        "label": "Schedule",
         "style": "dashed"
       }
     },
@@ -223,11 +206,10 @@
       "id": "service_to_repository",
       "fromNode": "service_layer",
       "toNode": "repository_layer",
-      "type": "arrow",
       "color": "#EF4444",
-      "vv": {
+      "label": "Query",
+      "pv": {
         "edgeType": "data_access",
-        "label": "Query",
         "style": "solid"
       }
     },
@@ -235,11 +217,10 @@
       "id": "repository_to_service",
       "fromNode": "repository_layer",
       "toNode": "service_layer",
-      "type": "arrow",
-      "vv": {
+      "color": "#EF4444",
+      "label": "Return",
+      "pv": {
         "edgeType": "data_access",
-        "label": "Return",
-        "color": "#EF4444",
         "style": "solid"
       }
     },
@@ -247,11 +228,10 @@
       "id": "service_to_endpoints",
       "fromNode": "service_layer",
       "toNode": "endpoints",
-      "type": "arrow",
-      "vv": {
+      "color": "#10B981",
+      "label": "Result",
+      "pv": {
         "edgeType": "business_logic",
-        "label": "Result",
-        "color": "#10B981",
         "style": "solid"
       }
     },
@@ -259,11 +239,10 @@
       "id": "schemas_to_endpoints",
       "fromNode": "schemas",
       "toNode": "endpoints",
-      "type": "arrow",
-      "vv": {
+      "color": "#06B6D4",
+      "label": "Validated",
+      "pv": {
         "edgeType": "validation",
-        "label": "Validated",
-        "color": "#06B6D4",
         "style": "dashed"
       }
     }
